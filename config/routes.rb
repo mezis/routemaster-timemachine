@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   require 'sidekiq/web'
+  require 'sidetiq/web'
   mount Sidekiq::Web => '/sidekiq'
+
+  mount $drainer => '/events'
 end
