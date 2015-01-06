@@ -30,6 +30,17 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'routemaster-client'
+gem 'routemaster-drain'
+
+gem 'redis'
+gem 'sidekiq'
+gem 'sidetiq'
+
+group :development do
+  gem 'foreman'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -39,5 +50,13 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'dotenv-rails'
 end
 
+group :test do
+  gem 'guard-rspec'
+end
