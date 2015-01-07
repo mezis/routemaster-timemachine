@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  resources :events, only: [:index, :show]
+  mount $drainer => '/events'
+
+  root 'events#index'
 
   require 'sidekiq/web'
   require 'sidetiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  mount $drainer => '/events'
 end

@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  received_at: "Received At"
+
+  time:
+    formats:
+      default: "%Y-%m-%d %H:%M:%S"
