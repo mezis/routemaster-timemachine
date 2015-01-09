@@ -53,6 +53,7 @@ end
 
 group :test do
   gem 'guard-rspec'
+  gem 'database_cleaner'
 end
 
 group :staging, :production do
