@@ -8,6 +8,8 @@ cache:
 script:
   - bundle exec rspec
 env:
+    APP_URL=https://routemaster-timemachine.dev
+    PASSWORD=password
     REDIS_URL=redis://localhost
     ROUTEMASTER_URL=https://routemaster.dev/
     ROUTEMASTER_CLIENT_UUID=demo
@@ -15,4 +17,4 @@ env:
     ROUTEMASTER_CALLBACK_PATH=/events
     ROUTEMASTER_DRAIN_TOKENS=demo
     ROUTEMASTER_SUBSCRIBER_TIMEOUT=6000
-    APP_URL=https://routemaster-timemachine.dev
+    USERNAME=username
