@@ -5,26 +5,28 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:url) %></th>
-      <th><%= model_class.human_attribute_name(:type) %></th>
-      <th><%= model_class.human_attribute_name(:topic) %></th>
-      <th><%= model_class.human_attribute_name(:t) %></th>
-      <th><%= t 'received_at' %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th class='text-uppercase'><%= model_class.human_attribute_name(:url) %></th>
+      <th class='text-uppercase'><%= model_class.human_attribute_name(:type) %></th>
+      <th class='text-uppercase'><%= model_class.human_attribute_name(:topic) %></th>
+      <th class='text-uppercase'>
+        <%= t 'sent_at' %>
+        <i class="fa fa-long-arrow-down"></i>
+      </th>
+      <th class='text-uppercase'><%= t 'received_at' %></th>
+      <th class='text-uppercase'><%= t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= link_to event.id, event_path(event) %></td>
-        <td><%= event.url %></td>
+        <td><%= link_to event.url, event_path(event) %></td>
         <td><%= event.type %></td>
         <td><%= event.topic %></td>
-        <td><%= event.t %></td>
+        <td><%=l Time.at(event.t / 1000) %></td>
         <td><%=l event.created_at %></td>
         <td></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @events %>

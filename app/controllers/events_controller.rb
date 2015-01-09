@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   def index
-    @events = EventSearch.new.search
+    @events = EventSearch.new(params).search
   end
 
   def show
