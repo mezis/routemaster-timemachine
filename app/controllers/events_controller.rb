@@ -1,8 +1,13 @@
 class EventsController < ApplicationController
 
   def index
-    @event_search = EventSearch.new(params)
-    @events = @event_search.search
+    options = {}
+    options.merge! ( params[:event_search] || {} )
+    options.merge! params.slice(:page, :per_page)
+    options.symbolize_keys!
+
+    @event_search = EventSearch.new(options)
+    @events       = @event_search.search
   end
 
   def show
