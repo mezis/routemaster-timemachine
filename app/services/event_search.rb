@@ -1,15 +1,26 @@
 class EventSearch
 
+  ALLOWED_TOPICS = [
+    'photos',
+    'availabilities',
+    'unavailabilities',
+    'properties',
+    'rates',
+    'users'
+  ]
+
   def initialize(options = {})
     @order     = options.fetch(:order, [{ t: :desc }])
     @page      = options.fetch(:page, 1)
     @per_page  = options.fetch(:per_page, 200)
     @t         = options.fetch(:t, [])
+    @topic     = options.fetch(:topic, [])
   end
 
   def scope
     scope = Event.order(@order)
     scope = scope.between_t(@t.first, @t.last) if valid_t_filter?
+    scope = scope.where(topic: @topic) if valid_topic_filter?
     scope
   end
 
@@ -21,5 +32,10 @@ class EventSearch
   def valid_t_filter?
     return false if @t.empty?
     @t.map! { |t| Time.parse(t).to_i }
+  end
+
+  def valid_topic_filter?
+    @topic = @topic.select { |topic| ALLOWED_TOPICS.include? topic }
+    @topic.any?
   end
 end

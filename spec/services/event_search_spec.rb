@@ -33,6 +33,21 @@ RSpec.describe EventSearch do
         expect(subject.search.map(&:id)).to eql [event_1.id]
       end
     end
+
+    context 'on topic' do
+      let!(:event_1) { Event.create(topic: 'photos') }
+      let!(:event_2) { Event.create(topic: 'properties') }
+      let!(:event_3) { Event.create(topic: 'rates') }
+      let(:options) do
+        {
+          topic: ['photos', 'properties']
+        }
+      end
+
+      it 'returns filtered topic results' do
+        expect(subject.search.map(&:id).sort).to eql [event_1.id, event_2.id]
+      end
+    end
   end
 
   describe 'pagination' do
