@@ -48,6 +48,22 @@ RSpec.describe EventSearch do
         expect(subject.search.map(&:id).sort).to eql [event_1.id, event_2.id]
       end
     end
+
+    context 'on type' do
+      let!(:event_1) { Event.create(type: 'update') }
+      let!(:event_2) { Event.create(type: 'create') }
+      let!(:event_3) { Event.create(type: 'delete') }
+      let!(:event_4) { Event.create(type: 'noop') }
+      let(:options) do
+        {
+          type: ['update', 'delete']
+        }
+      end
+
+      it 'returns filtered type results' do
+        expect(subject.search.map(&:id).sort).to eql [event_1.id, event_3.id]
+      end
+    end
   end
 
   describe 'pagination' do
