@@ -22,7 +22,7 @@ gem 'will_paginate', '~> 3.0.6'
 
 gem 'unicorn'
 
-gem 'routemaster-client'
+gem 'routemaster-client', '~> 1.1'
 gem 'routemaster-drain'
 
 gem 'redis'
