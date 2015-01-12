@@ -15,3 +15,39 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(function(){
+
+  if( $('#event_search_form').length > 0){
+
+    $('#event_search_form').on('change', function() {
+      $(this).submit();
+    });
+
+    $('#event_search_form').find('#clear_event_search').on('click', function(e) {
+      e.preventDefault();
+
+      var form = $(this).parents('form');
+      form.find(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio').val('');
+      form.find(':checkbox, :radio').prop('checked', false);
+
+      form.submit();
+
+      return false;
+    });
+
+    $('#event_search_form').find('#replay_events').on('click', function(e){
+      e.preventDefault();
+
+      if(!confirm("This will replay the whole collection filtered (ignoring pages). Are you sure you want to do this?"))
+        return false;
+
+      var url  = $(this).data('replay-url');
+      var form = $(this).parents('form');
+      form.attr('action', url);
+      form.submit();
+
+      return false;
+    });
+  }
+});

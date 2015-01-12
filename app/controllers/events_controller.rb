@@ -14,9 +14,18 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def replay
-    @event = Replay.new(Event.find(params[:id])).replay
+  def replay_event
+    @event = Event.find(params[:id])
+
+    Replay.new(Event.where(id: @event.id)).replay
     redirect_to @event, notice: 'Event replayed successfully'
+  end
+
+  def replay_events
+    @events = EventSearch.new(params[:event_search] || {})
+
+    Replay.new(@events.scope).replay
+    redirect_to events_path(params.slice(:event_search)), notice: 'Events replayed successfully'
   end
 
 end

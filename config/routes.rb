@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   resources :events, only: [:index, :show] do
     member do
-      get 'replay'
+      get 'replay', action: :replay_event
+    end
+
+    collection do
+      get 'replay', action: :replay_events
     end
   end
 
