@@ -2,6 +2,29 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
+
+<div class="">
+  <h2>Filter by</h2>
+  <%= form_for @event_search, url: events_path, method: :get, html: { class: 'form-horizontal well' } do |f| %>
+
+    <div class="form-group">
+      <%= label_tag :t, 'Sent At', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-3">
+        <%= text_field_tag 't[]', @event_search.t.first, class: 'form-control', placeholder: 'From: YYYY-MM-DD HH:MM' %>
+      </div>
+      <div class="col-sm-3">
+        <%= text_field_tag 't[]', @event_search.t.last, class: 'form-control', placeholder: 'To: YYYY-MM-DD HH:MM' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-11 col-sm-1">
+        <%= f.submit 'Submit', class: 'btn btn-info pull-right' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -22,7 +45,7 @@
         <td><%= link_to event.url, event_path(event) %></td>
         <td><%= event.type %></td>
         <td><%= event.topic %></td>
-        <td><%=l Time.at(event.t / 1000) %></td>
+        <td><%=l Time.at(event.t) %></td>
         <td><%=l event.created_at %></td>
         <td></td>
       </tr>

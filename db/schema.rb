@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20150106181304) do
     t.string   "url"
     t.string   "type"
     t.string   "topic"
-    t.integer  "t",          limit: 8
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.decimal  "t"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

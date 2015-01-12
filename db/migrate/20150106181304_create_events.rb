@@ -4,7 +4,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :url
       t.string :type
       t.string :topic
-      t.integer :t, :limit => 8
+      t.decimal :t
 
       t.timestamps null: false
     end

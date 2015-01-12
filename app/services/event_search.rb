@@ -1,4 +1,5 @@
 class EventSearch
+  include ActiveModel::Model
 
   ALLOWED_TOPICS = [
     'photos',
@@ -16,6 +17,8 @@ class EventSearch
     'noop'
   ]
 
+  attr_reader :t, :topic, :type
+
   def initialize(options = {})
     @order     = options.fetch(:order, [{ t: :desc }])
     @page      = options.fetch(:page, 1)
@@ -27,9 +30,12 @@ class EventSearch
 
   def scope
     scope = Event.order(@order)
-    scope = scope.between_t(@t.first, @t.last) if valid_t_filter?
-    scope = scope.where(topic: @topic)         if valid_topic_filter?
-    scope = scope.where(type: @type)           if valid_type_filter?
+    scope = scope.between_t(
+              Time.parse(@t.first).to_f,
+              Time.parse(@t.last).to_f
+            ) if valid_t_filter?
+    scope = scope.where(topic: @topic) if valid_topic_filter?
+    scope = scope.where(type: @type)   if valid_type_filter?
     scope
   end
 
@@ -39,8 +45,11 @@ class EventSearch
 
   private
   def valid_t_filter?
+    @t.reject!(&:empty?)
+
     return false if @t.empty?
-    @t.map! { |t| Time.parse(t).to_i }
+    return false if @t.length != 2
+    return true
   end
 
   def valid_topic_filter?
