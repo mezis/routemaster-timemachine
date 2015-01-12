@@ -15,6 +15,26 @@ RSpec.describe EventSearch do
     end
   end
 
+  describe 'filtering' do
+
+    context 'on t' do
+      let!(:event_1) { Event.create(t: 20.minutes.ago.to_f) }
+      let!(:event_2) { Event.create(t: Time.now.to_f) }
+      let(:options) do
+        {
+          t: [
+            I18n.l(30.minutes.ago),
+            I18n.l(10.minutes.ago)
+          ]
+        }
+      end
+
+      it 'returns filtered t results' do
+        expect(subject.search.map(&:id)).to eql [event_1.id]
+      end
+    end
+  end
+
   describe 'pagination' do
     let!(:event_1) { Event.create(t: 2.minutes.ago.to_f) }
     let!(:event_2) { Event.create(t: 1.minutes.ago.to_f) }
