@@ -6,7 +6,7 @@ services:
 cache:
   - bundler
 script:
-  - bundle exec rspec
+  - bundle exec rake db:create db:migrate; bundle exec rspec
 env:
     APP_URL=https://routemaster-timemachine.dev
     PASSWORD=password
