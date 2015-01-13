@@ -7,7 +7,7 @@ class EventSearch
     'unavailabilities',
     'properties',
     'rates',
-    'users'
+    'users_photo'
   ]
 
   ALLOWED_TYPES = [
