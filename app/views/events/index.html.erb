@@ -1,6 +1,5 @@
-<%- model_class = Event -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1>Events</h1>
 </div>
 
 
@@ -53,9 +52,9 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th class='text-uppercase'><%= model_class.human_attribute_name(:url) %></th>
-      <th class='text-uppercase'><%= model_class.human_attribute_name(:type) %></th>
-      <th class='text-uppercase'><%= model_class.human_attribute_name(:topic) %></th>
+      <th class='text-uppercase'>URL</th>
+      <th class='text-uppercase'>TYPE</th>
+      <th class='text-uppercase'>TOPIC</th>
       <th class='text-uppercase'>
         <%= t 'sent_at' %>
         <i class="fa fa-long-arrow-down"></i>

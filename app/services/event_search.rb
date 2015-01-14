@@ -46,10 +46,7 @@ class EventSearch
   private
   def valid_t_filter?
     @t.reject!(&:empty?)
-
-    return false if @t.empty?
-    return false if @t.length != 2
-    return true
+    @t.present? && @t.length == 2
   end
 
   def valid_topic_filter?
