@@ -4,7 +4,7 @@ class Subscriber
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence { minutely(5) }
+  recurrence { hourly.minute_of_hour(0, 15, 30, 45) }
 
   def perform
     client = Routemaster::Client.new({
