@@ -61,4 +61,5 @@ end
 group :staging, :production do
   gem 'rails_12factor'
   gem 'newrelic_rpm', require: false
+  gem 'honeybadger', require: false
 end
