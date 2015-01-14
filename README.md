@@ -6,7 +6,7 @@ View, filter, replay and paginate through previous Routemaster events
 
 ## How it works
 
-Listens to pre-configured topics (via ENV) with `routemaster-client`. Whenever a new topic event is sent through `routemaster`, this app stores it on postgres.
+Listens to pre-configured topics with `routemaster-client`. Whenever a new topic event is sent through `routemaster`, this app stores it on postgres.
 
 The web interface allows to search and replay a subset of routemaster events recorded. Replay is done by re-sending the messages (including the original timestamp).
 
