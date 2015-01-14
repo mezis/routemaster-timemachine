@@ -1,0 +1,20 @@
+language: ruby
+rvm:
+  - 2.2.0
+services:
+  - redis
+cache:
+  - bundler
+script:
+  - bundle exec rake db:create db:migrate; bundle exec rspec
+env:
+    APP_URL=https://routemaster-timemachine.dev
+    PASSWORD=password
+    REDIS_URL=redis://localhost
+    ROUTEMASTER_URL=https://routemaster.dev/
+    ROUTEMASTER_CLIENT_UUID=demo
+    ROUTEMASTER_CALLBACK_UUID=demo
+    ROUTEMASTER_CALLBACK_PATH=/events
+    ROUTEMASTER_DRAIN_TOKENS=demo
+    ROUTEMASTER_SUBSCRIBER_TIMEOUT=6000
+    USERNAME=username

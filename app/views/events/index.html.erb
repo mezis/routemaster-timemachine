@@ -1,0 +1,77 @@
+<div class="page-header">
+  <h1>Events</h1>
+</div>
+
+
+<div class="">
+  <h2>Filter by</h2>
+  <%= form_for @event_search, url: events_path, method: :get, html: { id: 'event_search_form', class: 'form-horizontal well' } do |f| %>
+
+    <div class="form-group">
+      <%= f.label :topic, class: 'col-sm-2 control-label' %>
+
+      <% @event_search.class::ALLOWED_TOPICS.sort.each do |topic| %>
+        <label class="checkbox-inline">
+          <%= f.check_box :topic, { multiple: true }, topic, nil %>
+          <%= topic.capitalize %>
+        </label>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :type, class: 'col-sm-2 control-label' %>
+
+      <% @event_search.class::ALLOWED_TYPES.sort.each do |type| %>
+        <label class="checkbox-inline">
+          <%= f.check_box :type, { multiple: true }, type, nil %>
+          <%= type.capitalize %>
+        </label>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :t, 'Sent At', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-3">
+        <%= text_field_tag 'event_search[t][]', @event_search.t.first, class: 'form-control', placeholder: 'From: YYYY-MM-DD HH:MM' %>
+      </div>
+      <div class="col-sm-3">
+        <%= text_field_tag 'event_search[t][]', @event_search.t.last, class: 'form-control', placeholder: 'To: YYYY-MM-DD HH:MM' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-9 col-sm-3">
+        <%= f.submit 'Replay', id: 'replay_events', class: 'btn btn-danger', :'data-replay-url' => replay_events_path %>
+        or <%= link_to 'Clear the form', '#', id: 'clear_event_search' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h4> Total results: <%= @events.total_entries %></h4>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class='text-uppercase'>URL</th>
+      <th class='text-uppercase'>TYPE</th>
+      <th class='text-uppercase'>TOPIC</th>
+      <th class='text-uppercase'>
+        <%= t 'sent_at' %>
+        <i class="fa fa-long-arrow-down"></i>
+      </th>
+      <th class='text-uppercase'><%= t 'received_at' %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= link_to event.url, event_path(event) %></td>
+        <td><%= event.type %></td>
+        <td><%= event.topic %></td>
+        <td><%=l Time.at(event.t) %></td>
+        <td><%=l event.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @events %>
