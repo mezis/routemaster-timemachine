@@ -18,6 +18,8 @@ Requires:
 - Postgres
 - Tunnels
 
+Add to routemaster clients the same UUID you have for ROUTEMASTER_CLIENT_UUID
+
 ```
 cp .env.example .env
 echo 1357 > ~/.pow/routemaster-timemachine
