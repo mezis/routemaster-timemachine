@@ -22,10 +22,10 @@ class EventsController < ApplicationController
   end
 
   def replay_events
-    @events = EventSearch.new(params[:event_search] || {})
+    ReplayWorker.perform_async(params[:event_search] || {})
 
-    Replay.new(@events.scope).replay
-    redirect_to events_path(params.slice(:event_search)), notice: 'Events replayed successfully'
+    redirect_to events_path(params.slice(:event_search)),
+      notice: 'A job was scheduled to replay the selected events'
   end
 
 end

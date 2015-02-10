@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'sidekiq/testing'
 
 RSpec.describe EventsController do
 
@@ -25,5 +26,25 @@ RSpec.describe EventsController do
 
     end
 
+  end
+
+  describe 'replay_events' do
+    before do
+      http_login
+    end
+
+    Sidekiq::Testing.fake! do
+
+      it 'schedules a job based in the params' do
+        expect(ReplayWorker).to receive(:perform_async)
+          .with(topic: ['photos'])
+          .and_call_original
+
+        expect {
+          get :replay_events, event_search: { topic: ['photos'] }
+        }.to change(ReplayWorker.jobs, :size).by(1)
+      end
+
+    end
   end
 end

@@ -20,6 +20,7 @@ class EventSearch
   attr_reader :t, :topic, :type
 
   def initialize(options = {})
+    options    = options.symbolize_keys
     @order     = options.fetch(:order, [{ t: :desc }])
     @page      = options.fetch(:page, 1)
     @per_page  = options.fetch(:per_page, 200)

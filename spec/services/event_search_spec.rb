@@ -6,6 +6,20 @@ RSpec.describe EventSearch do
 
   subject { described_class.new(options) }
 
+  context 'when options has strings as keys' do
+
+    let(:options) do
+      {
+        "topic" => ['photos', 'properties']
+      }
+    end
+
+    it 'captures the right topics' do
+      expect(subject.topic).to eql(options["topic"])
+    end
+
+  end
+
   describe 'ordering' do
     let!(:event_1) { Event.create(t: 2.minutes.ago.to_f) }
     let!(:event_2) { Event.create(t: 1.minutes.ago.to_f) }
