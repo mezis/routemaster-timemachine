@@ -1,15 +1,6 @@
 class EventSearch
   include ActiveModel::Model
 
-  ALLOWED_TOPICS = [
-    'photos',
-    'availabilities',
-    'unavailabilities',
-    'properties',
-    'rates',
-    'users_photo'
-  ]
-
   ALLOWED_TYPES = [
     'create',
     'update',
@@ -51,7 +42,7 @@ class EventSearch
   end
 
   def valid_topic_filter?
-    @topic = @topic.select { |topic| ALLOWED_TOPICS.include? topic }
+    @topic = @topic.select { |topic| Subscriber::ALLOWED_TOPICS.include? topic }
     @topic.any?
   end
 

@@ -4,6 +4,14 @@ class Subscriber
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
+  ALLOWED_TOPICS = [
+    'photos',
+    'unavailabilities',
+    'properties',
+    'rates',
+    'users_photo'
+  ]
+
   recurrence { hourly.minute_of_hour(0, 15, 30, 45) }
 
   def perform
@@ -13,7 +21,7 @@ class Subscriber
     })
 
     client.subscribe({
-      topics:   ['photos', 'users_photo', 'properties', 'rates', 'unavailabilities'],
+      topics:   ALLOWED_TOPICS,
       callback: "#{ENV['APP_URL']}#{ENV['ROUTEMASTER_CALLBACK_PATH']}",
       uuid:     ENV['ROUTEMASTER_CALLBACK_UUID'],
       timeout:  ENV['ROUTEMASTER_SUBSCRIBER_TIMEOUT'].to_i,

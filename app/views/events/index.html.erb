@@ -10,7 +10,7 @@
     <div class="form-group">
       <%= f.label :topic, class: 'col-sm-2 control-label' %>
 
-      <% @event_search.class::ALLOWED_TOPICS.sort.each do |topic| %>
+      <% Subscriber::ALLOWED_TOPICS.sort.each do |topic| %>
         <label class="checkbox-inline">
           <%= f.check_box :topic, { multiple: true }, topic, nil %>
           <%= topic.capitalize %>
