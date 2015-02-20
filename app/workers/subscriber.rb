@@ -13,7 +13,7 @@ class Subscriber
     })
 
     client.subscribe({
-      topics:   ['photos', 'users_photo', 'properties', 'availabilities', 'rates', 'unavailabilities'],
+      topics:   ['photos', 'users_photo', 'properties', 'rates', 'unavailabilities'],
       callback: "#{ENV['APP_URL']}#{ENV['ROUTEMASTER_CALLBACK_PATH']}",
       uuid:     ENV['ROUTEMASTER_CALLBACK_UUID'],
       timeout:  ENV['ROUTEMASTER_SUBSCRIBER_TIMEOUT'].to_i,
