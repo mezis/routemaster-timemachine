@@ -1,4 +1,4 @@
-class MonitorController < ApplicationController
+class MonitorController < ActionController::Base
 
   def health
     health = Event.where(created_at: monitor_window).count >= monitor_threshold
