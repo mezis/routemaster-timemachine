@@ -6,6 +6,6 @@ class Sweeper
   recurrence { hourly.minute_of_hour(0, 30) }
 
   def perform
-    Event.where('created_at < ?', 3.days.ago).delete_all
+    Event.where('created_at < ?', 5.days.ago).delete_all
   end
 end
