@@ -58,7 +58,7 @@ group :test do
   gem 'database_cleaner'
 end
 
-group :staging, :production do
+group :staging1, :production do
   gem 'rails_12factor'
   gem 'newrelic_rpm', require: false
   gem 'honeybadger', require: false
