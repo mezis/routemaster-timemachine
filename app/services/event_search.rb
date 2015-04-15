@@ -23,8 +23,8 @@ class EventSearch
   def scope
     scope = Event.order(@order)
     scope = scope.between_t(
-              Time.parse(@t.first).to_f,
-              Time.parse(@t.last).to_f
+              Time.zone.parse(@t.first).to_f,
+              Time.zone.parse(@t.last).to_f
             ) if valid_t_filter?
     scope = scope.where(topic: @topic) if valid_topic_filter?
     scope = scope.where(type: @type)   if valid_type_filter?
