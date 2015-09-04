@@ -9,6 +9,7 @@ class Subscriber
     'unavailabilities',
     'properties',
     'rates',
+    'users',
     'users_photo'
   ]
 
