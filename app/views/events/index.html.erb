@@ -13,7 +13,7 @@
       <% Subscriber::ALLOWED_TOPICS.sort.each do |topic| %>
         <label class="checkbox-inline">
           <%= f.check_box :topic, { multiple: true }, topic, nil %>
-          <%= topic.capitalize %>
+          <%= topic.humanize %>
         </label>
       <% end %>
     </div>

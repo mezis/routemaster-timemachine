@@ -9,7 +9,7 @@ class Subscriber
     'unavailabilities',
     'properties',
     'rates',
-    'users',
+    'users_api_tokens',
     'users_photo'
   ]
 
