@@ -12,7 +12,7 @@
     <dt class="text-uppercase"><strong><%= Event.human_attribute_name(:topic) %>:</strong></dt>
     <dd><%= @event.topic %></dd>
     <dt class="text-uppercase"><strong>Sent at:</strong></dt>
-    <dd><%= l Time.at(@event.t/1000) %></dd>
+    <dd><%= l Time.at(@event.t) %></dd>
     <dt class="text-uppercase"><strong>Received at:</strong></dt>
     <dd><%= l @event.created_at %></dd>
   </dl>
