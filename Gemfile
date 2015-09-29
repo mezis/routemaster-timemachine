@@ -20,7 +20,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'will_paginate', '~> 3.0.6'
 
-gem 'unicorn'
+gem 'puma'
 
 gem 'routemaster-client', '~> 1.1'
 gem 'routemaster-drain'
