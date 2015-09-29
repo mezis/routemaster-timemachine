@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Sweeper do
-
   before do
     Event.create(created_at: 10.days.ago)
     Event.create(created_at: 8.days.ago)

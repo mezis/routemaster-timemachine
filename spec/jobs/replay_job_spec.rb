@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ReplayWorker do
-
+RSpec.describe ReplayJob do
   before do
     allow_any_instance_of(Replay).to receive(:replay)
   end
@@ -15,7 +14,6 @@ RSpec.describe ReplayWorker do
   end
 
   context 'when specific topic' do
-
     let(:options) do
       { topic: ["photos"] }
     end

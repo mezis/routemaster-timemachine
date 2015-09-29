@@ -22,7 +22,7 @@ class EventsController < ApplicationController
   end
 
   def replay_events
-    ReplayWorker.perform_async(params[:event_search] || {})
+    ReplayJob.perform_later(params[:event_search] || {})
 
     redirect_to events_path(params.slice(:event_search)),
       notice: 'A job was scheduled to replay the selected events'
