@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   root 'events#index'
 
   require 'sidekiq/web'
-  require 'sidetiq/web'
+  require 'sidekiq/cron/web'
 
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     username == ENV.fetch('USERNAME') && password == ENV.fetch('PASSWORD')

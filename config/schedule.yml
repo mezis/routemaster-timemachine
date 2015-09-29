@@ -1,0 +1,9 @@
+subscriber:
+  cron: "*/15 * * * *"
+  class: "Subscriber"
+  queue: default
+
+sweeper:
+  cron: "*/30 * * * *"
+  class: "Sweeper"
+  queue: default

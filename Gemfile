@@ -24,7 +24,7 @@ gem 'routemaster-drain'
 gem 'redis'
 gem 'redis-namespace'
 gem 'sidekiq'
-gem 'sidetiq'
+gem "sidekiq-cron", "~> 0.3.0"
 
 gem 'twitter-bootstrap-rails'
 

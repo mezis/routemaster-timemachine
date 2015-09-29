@@ -1,9 +1,5 @@
-class Sweeper
-
-  include Sidekiq::Worker
-  include Sidetiq::Schedulable
-
-  recurrence { hourly.minute_of_hour(0, 30) }
+class Sweeper < ActiveJob::Base
+  queue_as :default
 
   def perform
     Event.where('created_at < ?', 5.days.ago).delete_all
