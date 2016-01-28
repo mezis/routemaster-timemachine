@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.3.0'
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 4.2.5.1'
 
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -56,3 +56,5 @@ group :staging1, :production do
   gem 'newrelic_rpm', require: false
   gem 'honeybadger', require: false
 end
+
+gem 'rails-html-sanitizer', '~> 1.0.3'
