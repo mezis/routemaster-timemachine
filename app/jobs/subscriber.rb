@@ -9,6 +9,7 @@ class Subscriber < ActiveJob::Base
     'properties',
     'rates',
     'users_api_tokens',
+    'properties_external',
     'users_photo'
   ]
 
